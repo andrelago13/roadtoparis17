@@ -39,7 +39,7 @@ public class Algorithm {
 		
 		for(int xi = 0; xi < slice.width; ++xi) {
 			for(int yi = 0; yi < slice.height; ++yi) {
-				matrix[yi][xi] = Pizza.Ingredients.NONE;
+				matrix[y + yi][x + xi] = Pizza.Ingredients.NONE;
 			}
 		}
 		
