@@ -85,6 +85,7 @@ public class Algorithm {
 		
 		return null;
 	}
+	
 	private static Slice findMaxSliceRec(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, int x, int y) {
 		int width = matrix[0].length;
 		int height = matrix.length;
