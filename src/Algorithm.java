@@ -47,7 +47,23 @@ public class Algorithm {
 	}
 
 	private static boolean isValidSlice(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, Slice slice) {
-		// TODO
+        if (slice.x + slice.width >= matrix[0].length)
+            return false;
+        if (slice.y + slice.height >= matrix.length)
+            return false;
+        int tomatoes = 0;
+        int mushrooms = 0;
+		for (int y = slice.y; y < slice.y + slice.height; y++) {
+            for (int x = slice.x; x < slice.x + slice.width; x++) {
+                switch (matrix[y][x]) {
+                    case NONE: return false;
+                    case TOMATO: tomatoes++; break;
+                    case MUSHROOM: mushrooms++; break;
+                }
+            }
+        }
+        if (tomatoes < minIngredients || mushrooms < minIngredients)
+            return false;
 		return true;
 	}
 
