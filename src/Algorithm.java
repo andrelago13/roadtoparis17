@@ -55,8 +55,31 @@ public class Algorithm {
 		return null;
 	}
 
-	private static boolean isValidSlice(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, Slice slice) {
-		// TODO
+    /**
+     * Assumes the number of cells of the slice does not exceed the maximum number of cells per slice.
+     * @param minIngredients
+     * @param matrix
+     * @param slice
+     * @return
+     */
+	private static boolean isValidSlice(int minIngredients, Pizza.Ingredients[][] matrix, Slice slice) {
+        if (slice.x + slice.width >= matrix[0].length)
+            return false;
+        if (slice.y + slice.height >= matrix.length)
+            return false;
+        int tomatoes = 0;
+        int mushrooms = 0;
+		for (int y = slice.y; y < slice.y + slice.height; y++) {
+            for (int x = slice.x; x < slice.x + slice.width; x++) {
+                switch (matrix[y][x]) {
+                    case NONE: return false;
+                    case TOMATO: tomatoes++; break;
+                    case MUSHROOM: mushrooms++; break;
+                }
+            }
+        }
+        if (tomatoes < minIngredients || mushrooms < minIngredients)
+            return false;
 		return true;
 	}
 
