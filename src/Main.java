@@ -58,7 +58,7 @@ public class Main {
 	public static int tryFile(String file) throws IOException {
 		readFile("res/" + file + ".in");
 		
-		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, true);
+		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, false);
 		
 		int score = 0;
 		for(Slice s : res) {
