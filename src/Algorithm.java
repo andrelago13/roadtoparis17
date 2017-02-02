@@ -46,7 +46,14 @@ public class Algorithm {
 		return null;
 	}
 
-	private static boolean isValidSlice(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, Slice slice) {
+    /**
+     * Assumes the number of cells of the slice does not exceed the maximum number of cells per slice.
+     * @param minIngredients
+     * @param matrix
+     * @param slice
+     * @return
+     */
+	private static boolean isValidSlice(int minIngredients, Pizza.Ingredients[][] matrix, Slice slice) {
         if (slice.x + slice.width >= matrix[0].length)
             return false;
         if (slice.y + slice.height >= matrix.length)
