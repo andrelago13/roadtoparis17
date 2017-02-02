@@ -20,6 +20,6 @@ public class Output {
 	
 	public static void writeSlice (Slice s, PrintWriter write){
 		
-		write.println(s.x + " " + s.y + " " + (s.x + s.width) + " " + (s.y + s.height));
+		write.println(s.x + " " + (s.x + s.width) + " " + s.y + " " + (s.y + s.height));
 	}
 }
