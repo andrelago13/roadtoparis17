@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Vector;
 
 public class Main {
 
@@ -45,11 +46,13 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		readFile("res/small.in");
-
-		for (int i = 0; i < rows; i++)
-			for (int j = 0; j < columns; j++)
-				System.out.println(matrix[i][j]);
+		String file = "big";
+		readFile("res/" + file + ".in");
+		
+		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, false);
+		
+		System.out.println("Slices: " + res.size());
+		Output.write(res, "res/" + file + ".out");
 	}
 
 }
