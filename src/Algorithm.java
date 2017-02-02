@@ -28,7 +28,7 @@ public class Algorithm {
 	}
 	
 	private static Pizza.Ingredients[][] removeSlice(Pizza.Ingredients[][] matrix, Slice slice) {
-		
+		return null;
 	}
 
 	/**
