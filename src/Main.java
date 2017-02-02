@@ -46,19 +46,30 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		tryFile("example");
-		tryFile("small");
-		tryFile("medium");
-		tryFile("big");
+		int score = 0;
+		score += tryFile("example");
+		score += tryFile("small");
+		score += tryFile("medium");
+		score += tryFile("big");
+		
+		System.out.println("TOTAL SCORE: " + score);
 	}
 	
-	public static void tryFile(String file) throws IOException {
+	public static int tryFile(String file) throws IOException {
 		readFile("res/" + file + ".in");
 		
 		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, false);
 		
+		int score = 0;
+		for(Slice s : res) {
+			score += s.getArea();
+		}
+		
 		System.out.println("Slices (" + file + "): " + res.size());
+		System.out.println("   Score: " + score);
 		Output.write(res, "res/" + file + ".out");
+		
+		return score;
 	}
 
 }
