@@ -4,7 +4,7 @@ import java.util.Vector;
 
 public class Output {
 	
-	public void write(Vector<Slice> slices, String filename) throws IOException{
+	public static void write(Vector<Slice> slices, String filename) throws IOException{
 		
 		try{
 		    PrintWriter writer = new PrintWriter(filename, "UTF-8");
@@ -18,7 +18,7 @@ public class Output {
 		}
 	}
 	
-	public void writeSlice (Slice s, PrintWriter write){
+	public static void writeSlice (Slice s, PrintWriter write){
 		
 		write.println(s.x + " " + s.y + " " + (s.x + s.width) + " " + (s.y + s.height));
 	}

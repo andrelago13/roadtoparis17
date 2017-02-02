@@ -46,12 +46,18 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String file = "example";
+		tryFile("example");
+		tryFile("small");
+		tryFile("medium");
+		tryFile("big");
+	}
+	
+	public static void tryFile(String file) throws IOException {
 		readFile("res/" + file + ".in");
 		
 		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, false);
 		
-		System.out.println("Slices: " + res.size());
+		System.out.println("Slices (" + file + "): " + res.size());
 		Output.write(res, "res/" + file + ".out");
 	}
 
