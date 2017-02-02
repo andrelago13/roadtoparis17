@@ -72,9 +72,12 @@ public class Algorithm {
 				slice.width = divisors.get(l);
 				slice.height = divisors.get(r);
 				
+				System.out.println("" + x + " " + y + " " + slice.width + " " + slice.height);
+				
 				if(isValidSlice(minIngredients, matrix, slice)) {
 					return slice;
 				}
+				System.out.println("not valid");
 				
 				++l;
 				--r;

@@ -48,9 +48,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		int score = 0;
 		score += tryFile("example");
-		score += tryFile("small");
-		score += tryFile("medium");
-		score += tryFile("big");
+		//score += tryFile("small");
+		//score += tryFile("medium");
+		//score += tryFile("big");
 		
 		System.out.println("TOTAL SCORE: " + score);
 	}
