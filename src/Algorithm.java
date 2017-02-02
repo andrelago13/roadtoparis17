@@ -72,12 +72,9 @@ public class Algorithm {
 				slice.width = divisors.get(l);
 				slice.height = divisors.get(r);
 				
-				System.out.println("" + x + " " + y + " " + slice.width + " " + slice.height);
-				
 				if(isValidSlice(minIngredients, matrix, slice)) {
 					return slice;
 				}
-				System.out.println("not valid");
 				
 				++l;
 				--r;
@@ -88,7 +85,7 @@ public class Algorithm {
 		
 		return null;
 	}
-	
+
 	private static Slice findMaxSliceRec(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, int x, int y) {
 		int width = matrix[0].length;
 		int height = matrix.length;
@@ -100,7 +97,7 @@ public class Algorithm {
 		
 		Slice bestSlice = null;
 		int bestSliceScore = 0;
-		
+
 		while(size > 0) {
 			ArrayList<Integer> divisors = divisors(size);
 			int divs = divisors.size();
@@ -120,11 +117,19 @@ public class Algorithm {
 					}
 					
 					Slice child = findMaxSlice(minIngredients, maxCells, matrix, childX, childY);
+					if(child == null) {
+						++l;
+						--r;
+						continue;
+					}
+					
 					int score = child.getArea() + slice.getArea();
 					if(score > bestSliceScore) {
 						bestSliceScore = score;
 						bestSlice = slice;
-					}
+					}					
+					
+					return slice;
 				}
 				
 				++l;
@@ -134,7 +139,7 @@ public class Algorithm {
 			size -= 2;
 		}
 		
-		return bestSlice;
+		return null;
 	}
 
     /**

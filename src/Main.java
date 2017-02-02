@@ -48,9 +48,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		int score = 0;
 		score += tryFile("example");
-		//score += tryFile("small");
-		//score += tryFile("medium");
-		//score += tryFile("big");
+		score += tryFile("small");
+		score += tryFile("medium");
+		score += tryFile("big");
 		
 		System.out.println("TOTAL SCORE: " + score);
 	}
@@ -58,7 +58,7 @@ public class Main {
 	public static int tryFile(String file) throws IOException {
 		readFile("res/" + file + ".in");
 		
-		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, false);
+		Vector<Slice> res = Algorithm.solve(min_ingredients, max_cells, matrix, true);
 		
 		int score = 0;
 		for(Slice s : res) {
