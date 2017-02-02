@@ -3,7 +3,7 @@ import java.util.Vector;
 
 public class Algorithm {
 	
-	public static Vector<Slice> solve(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix) {
+	public static Vector<Slice> solve(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, boolean recursive) {
 		
 		int sizeY = matrix.length;
 		int sizeX = matrix[0].length;
@@ -15,8 +15,14 @@ public class Algorithm {
 				if(matrix[y][x] == Pizza.Ingredients.NONE) {
 					break;
 				}
+
+				Slice slice;
+				if(recursive) {
+					slice = findMaxSliceRec(minIngredients, maxCells, matrix, x, y);
+				} else {
+					slice = findMaxSlice(minIngredients, maxCells, matrix, x, y);
+				}
 				
-				Slice slice = findMaxSlice(minIngredients, maxCells, matrix, x, y);
 				if(slice != null) {
 					slices.add(slice);
 					matrix = removeSlice(matrix, slice);
@@ -78,6 +84,53 @@ public class Algorithm {
 		}
 		
 		return null;
+	}
+	private static Slice findMaxSliceRec(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, int x, int y) {
+		int width = matrix[0].length;
+		int height = matrix.length;
+		
+		int size = maxCells;
+		Slice slice = new Slice();
+		slice.x = x;
+		slice.y = y;
+		
+		Slice bestSlice = null;
+		int bestSliceScore = 0;
+		
+		while(size > 0) {
+			ArrayList<Integer> divisors = divisors(size);
+			int divs = divisors.size();
+			int l = 0;
+			int r = divs - 1;
+			
+			while(l < divs) {
+				slice.width = divisors.get(l);
+				slice.height = divisors.get(r);
+				
+				if(isValidSlice(minIngredients, matrix, slice)) {
+					int childX = slice.x + slice.width;
+					int childY = slice.y + slice.height;
+					
+					if(childX >= width || childY >= height) {
+						return slice;
+					}
+					
+					Slice child = findMaxSlice(minIngredients, maxCells, matrix, childX, childY);
+					int score = child.getArea() + slice.getArea();
+					if(score > bestSliceScore) {
+						bestSliceScore = score;
+						bestSlice = slice;
+					}
+				}
+				
+				++l;
+				--r;
+			}
+			
+			size -= 2;
+		}
+		
+		return bestSlice;
 	}
 
     /**
