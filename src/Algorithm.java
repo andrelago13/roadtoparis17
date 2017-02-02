@@ -169,6 +169,7 @@ public class Algorithm {
 				res.add(i);
 			}
 		}
+		res.add(num);
 		return res;
 	}
 }
