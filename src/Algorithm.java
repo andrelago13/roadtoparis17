@@ -15,11 +15,20 @@ public class Algorithm {
 					break;
 				}
 				
+				Slice slice = findMaxSlice(minIngredients, maxCells, matrix, x, y);
+				if(slice != null) {
+					slices.add(slice);
+				}
+				
 				
 			}
 		}
 		
 		return slices;
+	}
+	
+	private static Pizza.Ingredients[][] removeSlice(Pizza.Ingredients[][] matrix, Slice slice) {
+		
 	}
 
 	/**
