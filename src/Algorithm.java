@@ -28,7 +28,6 @@ public class Algorithm {
 	}
 	
 	private static Pizza.Ingredients[][] removeSlice(Pizza.Ingredients[][] matrix, Slice slice) {
-		
 		int x = slice.x;
 		int y = slice.y;
 		
@@ -51,7 +50,33 @@ public class Algorithm {
 	 * @return the slice or null if impossible
 	 */
 	private static Slice findMaxSlice(int minIngredients, int maxCells, Pizza.Ingredients[][] matrix, int x, int y) {
-		// TODO
+		
+		int size = maxCells;
+		Slice slice = new Slice();
+		slice.x = x;
+		slice.y = y;
+		
+		while(size > 0) {
+			ArrayList<Integer> divisors = divisors(size);
+			int divs = divisors.size();
+			int l = 0;
+			int r = divs - 1;
+			
+			while(l < divs) {
+				slice.width = divisors.get(l);
+				slice.height = divisors.get(r);
+				
+				if(isValidSlice(minIngredients, matrix, slice)) {
+					return slice;
+				}
+				
+				++l;
+				--r;
+			}
+			
+			size -= 2;
+		}
+		
 		return null;
 	}
 
