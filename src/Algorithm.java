@@ -61,7 +61,7 @@ public class Algorithm {
 		Slice slice = new Slice();
 		slice.x = x;
 		slice.y = y;
-		
+
 		while(size > 0) {
 			ArrayList<Integer> divisors = divisors(size);
 			int divs = divisors.size();
@@ -142,9 +142,9 @@ public class Algorithm {
      * @return
      */
 	private static boolean isValidSlice(int minIngredients, Pizza.Ingredients[][] matrix, Slice slice) {
-        if (slice.x + slice.width >= matrix[0].length)
+        if (slice.x + slice.width > matrix[0].length)
             return false;
-        if (slice.y + slice.height >= matrix.length)
+        if (slice.y + slice.height > matrix.length)
             return false;
         int tomatoes = 0;
         int mushrooms = 0;
