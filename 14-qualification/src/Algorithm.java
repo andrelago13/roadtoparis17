@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 public class Algorithm {
 
@@ -87,7 +88,9 @@ public class Algorithm {
 			for (int i = 0; i < numPools; i++)
 				if (poolCapacity[i] < poolCapacity[worstPool])
 					worstPool = i;
-			int worstPoolRow = Output.getSecondGuaranteedCapacity(Output.getRowCapacities(Output.getPoolServers(worstPool, center), center));
+			Vector<Integer> rowCapacities = Output.getRowCapacities(Output.getPoolServers(worstPool, center), center);
+			int secondMax = Output.getSecondGuaranteedCapacity(rowCapacities);
+			int worstPoolRow = rowCapacities.indexOf(secondMax);
 
 			boolean allocated = false;
 			for (int i = 0; i < freeServers.size(); i++) {
