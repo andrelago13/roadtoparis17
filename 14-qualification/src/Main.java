@@ -64,7 +64,6 @@ public class Main {
 			System.out.println("");
 		}
 		
-		
 		for(int k = 0; k < data.servers.size(); k++)
 			System.out.println(data.servers.get(k).id + " " + data.servers.get(k).size + " " + data.servers.get(k).capacity);
 	}
