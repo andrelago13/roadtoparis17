@@ -5,8 +5,13 @@ import java.util.List;
 public class Algorithm {
 
 	
-	@SuppressWarnings("unchecked")
 	public static void solve(DataCenter center) {
+		allocatePositions(center);
+		allocatePools(center);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void allocatePositions(DataCenter center) {
 		ArrayList<Server> sortedServers = new ArrayList<>();
 		sortedServers = (ArrayList<Server>) center.servers.clone();
 		
