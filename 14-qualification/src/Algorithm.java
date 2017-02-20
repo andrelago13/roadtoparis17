@@ -79,13 +79,20 @@ public class Algorithm {
 				i--;
 			}
 		}
+		int poolCapacity[] = new int[numPools];
 		while (!freeServers.isEmpty()) {
+			for (int i = 0; i < numPools; i++)
+				poolCapacity[i] = Output.guaranteedCapacity(i, center);
 			int worstPool = 0;
-			int worstPoolRow = 0;
+			for (int i = 0; i < numPools; i++)
+				if (poolCapacity[i] < poolCapacity[worstPool])
+					worstPool = i;
+			int worstPoolRow = Output.getSecondGuaranteedCapacity(Output.getRowCapacities(Output.getPoolServers(worstPool, center), center));
 			for (int i = 0; i < freeServers.size(); i++) {
 				if (freeServers.get(i).posX != worstPoolRow)
 					continue;
 				freeServers.get(i).pool = worstPool;
+				poolCapacity[worstPool] = Output.guaranteedCapacity(worstPool, center);
 				freeServers.remove(i);
 				i--;
 			}

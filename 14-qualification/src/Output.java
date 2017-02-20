@@ -24,7 +24,7 @@ public class Output {
 		write.println(s.posY + " " + s.posX + " " + s.pool);
 	}
 	
-	public int guaranteedCapacity(int pool, DataCenter dataCenter){
+	public static int guaranteedCapacity(int pool, DataCenter dataCenter){
 		int capacity=0;
 		Vector<Server> poolServers = getPoolServers(pool, dataCenter);
 		Vector<Integer> rowCapacities = getRowCapacities(poolServers, dataCenter);
@@ -32,7 +32,7 @@ public class Output {
 		return capacity;
 	}
 	
-	public Vector<Integer> getRowCapacities(Vector<Server> poolServers, DataCenter dataCenter){
+	public static Vector<Integer> getRowCapacities(Vector<Server> poolServers, DataCenter dataCenter){
 		Vector<Integer> ret = new Vector<Integer>();
 		for(int i=0;i<dataCenter.grid.length;++i){
 			int rowCapacity=0;
@@ -46,7 +46,7 @@ public class Output {
 		return ret;
 	}
 	
-	public Vector<Server> getPoolServers(int pool, DataCenter dataCenter){
+	public static Vector<Server> getPoolServers(int pool, DataCenter dataCenter){
 		Vector<Server> poolServers = new Vector<Server>();
 		for(int i=0;i<dataCenter.servers.size();++i){
 			if(dataCenter.servers.get(i).pool == pool){
@@ -56,12 +56,12 @@ public class Output {
 		return poolServers;
 	}
 	
-	public int getSecondGuaranteedCapacity(Vector<Integer> capacities){
+	public static int getSecondGuaranteedCapacity(Vector<Integer> capacities){
 		Collections.sort(capacities);
 		return capacities.get(capacities.size()-2);
 	}
 	
-	public int getSecondToLast(Vector<Integer> capacities){
+	public static int getSecondToLast(Vector<Integer> capacities){
 		Collections.sort(capacities);
 		return capacities.get(1);
 	}
