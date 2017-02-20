@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Vector;
 
 public class Main {
 	
@@ -13,6 +14,7 @@ public class Main {
 	
 	public static void readFile(String filename) throws IOException {
 
+		data = new DataCenter();
 		BufferedReader reader = new BufferedReader(new FileReader(filename));
 		
 		String info = reader.readLine();
@@ -22,8 +24,8 @@ public class Main {
 		unvSlots = Integer.parseInt(details[2]);
 		pools = Integer.parseInt(details[3]);
 		serversNum = Integer.parseInt(details[4]);
-		
 		data.grid = new int[serversNum+unvSlots][2];
+		data.servers = new Vector<Server>();
 		
 		String line = null;
 		int tempUnvSlots = 0;
@@ -31,16 +33,16 @@ public class Main {
 		
 		while ((line = reader.readLine()) != null) {
 			
-			if(tempUnvSlots <= unvSlots)
+			if(tempUnvSlots < unvSlots)
 			{
-				String infoLine = reader.readLine();
-				String[] detailsLine = infoLine.split(" ");
+				String[] detailsLine = line.split(" ");
+				System.out.println(Integer.parseInt(detailsLine[0]));
+				System.out.println(Integer.parseInt(detailsLine[1]));
 				data.grid[Integer.parseInt(detailsLine[0])][Integer.parseInt(detailsLine[1])] = -1;
 			}
 			else
 			{
-				String infoLine = reader.readLine();
-				String[] detailsLine = infoLine.split(" ");
+				String[] detailsLine = line.split(" ");
 				
 				Server server = new Server();
 				server.id = serverId;
@@ -55,8 +57,17 @@ public class Main {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
+		readFile("res/example.in");
+		System.out.println(rows + " " + slotsPerRow + " " + unvSlots + " " + pools + " " + serversNum);
+		
+		for(int i = 0; i < serversNum+unvSlots; i++)
+			for(int j = 0; j < 1; j++)
+				System.out.println(data.grid[i][j]);
+		
+		for(int k = 0; k < data.servers.size(); k++)
+			System.out.println(data.servers.get(k).id + " " + data.servers.get(k).size + " " + data.servers.get(k).capacity);
 	}
 
 }
