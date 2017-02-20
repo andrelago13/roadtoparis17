@@ -12,9 +12,23 @@ public class Algorithm {
 	}
 	
 	public void allocatePools(DataCenter center, int numPools) {
-		List<Server> servers = (List<Server>)center.servers.clone();
-		while (!servers.isEmpty()) {
-
+		List<Server> freeServers = (List<Server>)center.servers.clone();
+		for (int i = 0; i < freeServers.size(); i++) {
+			if (freeServers.get(i).posX == -1) {
+				freeServers.remove(i);
+				i--;
+			}
+		}
+		while (!freeServers.isEmpty()) {
+			int worstPool = 0;
+			int worstPoolRow = 0;
+			for (int i = 0; i < freeServers.size(); i++) {
+				if (freeServers.get(i).posX != worstPoolRow)
+					continue;
+				freeServers.get(i).pool = worstPool;
+				freeServers.remove(i);
+				i--;
+			}
 		}
 	}
 }
