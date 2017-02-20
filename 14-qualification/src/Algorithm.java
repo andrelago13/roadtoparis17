@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Algorithm {
 
@@ -10,7 +11,10 @@ public class Algorithm {
 		return null;
 	}
 	
-	public void allocatePools(DataCenter center) {
-		
+	public void allocatePools(DataCenter center, int numPools) {
+		List<Server> servers = (List<Server>)center.servers.clone();
+		while (!servers.isEmpty()) {
+
+		}
 	}
 }
