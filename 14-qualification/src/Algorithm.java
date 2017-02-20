@@ -7,7 +7,7 @@ public class Algorithm {
 		
 	}
 	
-	public Server findFit(DataCenter center, int xStart, int yStart) {
+	public Server findFit(DataCenter center, List<Server> servers, int xStart, int yStart) {
 		return null;
 	}
 	
