@@ -14,15 +14,15 @@ public class Main {
 	static DataCenter data;
 	
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		//test();
 		readFile("res/dc.in");
 		Algorithm.solve(data, pools);
 		int[] p = new int[pools + 1];
 		int slots = 0;
+		int nServers = 0;
 		for(Server serv : data.servers) {
 			if(serv.posX >= 0) {
 				slots += serv.size;
+				nServers++;
 			}
 			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
 			/*if(serv.pool != -1) {
@@ -39,6 +39,7 @@ public class Main {
 		}
 		System.out.println("SCORE: " + new Output().evaluator(data, pools));
 		System.out.println("SLOTS: " + slots + "/" + (rows*slotsPerRow - unvSlots));
+		System.out.println("SERVERS: " + nServers + "/" + data.servers.size());
 	}
 	
 	public static void test() {
