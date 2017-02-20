@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Vector;
 
 public class DataCenter{
 	public int grid[][];
-	public Vector<Server> servers;
+	public ArrayList<Server> servers;
 	
 	public static Comparator<Server> RatioComparator = new Comparator<Server>(){
 		public int compare(Server server1, Server server2){
