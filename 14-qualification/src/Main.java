@@ -18,8 +18,15 @@ public class Main {
 		//test();
 		readFile("res/dc.in");
 		Algorithm.solve(data, pools);
+		int[] p = new int[pools];
 		for(Server serv : data.servers) {
 			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
+			if(serv.pool != -1) {
+				p[serv.pool] += 1;
+			}
+		}
+		for(int i = 0; i < p.length; ++i) {
+			System.out.println(i + "  -  " + p[i] + "  -  " + Output.guaranteedCapacity(i, data));
 		}
 		System.out.println("SCORE: " + new Output().evaluator(data, pools));
 	}
