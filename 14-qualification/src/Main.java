@@ -16,6 +16,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		readFile("res/dc.in");
 		Algorithm.solve(data, pools);
+		Output.write(new Vector(data.servers), "res/dc.out");
 		int[] p = new int[pools + 1];
 		int slots = 0;
 		int nServers = 0;
