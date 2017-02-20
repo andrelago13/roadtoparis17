@@ -8,10 +8,10 @@ public class DataCenter{
 	
 	public static Comparator<Server> RatioComparator = new Comparator<Server>(){
 		public int compare(Server server1, Server server2){
-			if(server1.capacity/server1.size > server2.capacity/server2.size){
+			if((float)server1.capacity/server1.size > (float)server2.capacity/server2.size){
 				return -1;
 			}
-			else if(server1.capacity/server1.size > server2.capacity/server2.size){
+			else if((float)server1.capacity/server1.size < (float)server2.capacity/server2.size){
 				return 1;
 			}
 			return 0;
@@ -20,7 +20,7 @@ public class DataCenter{
 	
 	public static Comparator<Server> IdComparator = new Comparator<Server>(){
 		public int compare(Server server1, Server server2){
-			if(server1.id > server2.id){
+			if(server1.id < server2.id){
 				return -1;
 			}
 			else if(server1.id > server2.id){
