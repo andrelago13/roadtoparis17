@@ -16,7 +16,12 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		//test();
-		readFile("res/example.in");
+		readFile("res/dc.in");
+		Algorithm.solve(data, pools);
+		for(Server serv : data.servers) {
+			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
+		}
+		System.out.println("SCORE: " + new Output().evaluator(data, pools));
 	}
 	
 	public static void test() {
@@ -108,6 +113,9 @@ public class Main {
 				String[] detailsLine = line.split(" ");
 				
 				Server server = new Server();
+				server.posX = -1;
+				server.posY = -1;
+				server.pool = -1;
 				server.id = serverId;
 				server.size = Integer.parseInt(detailsLine[0]);
 				server.capacity = Integer.parseInt(detailsLine[1]);

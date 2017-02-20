@@ -5,9 +5,9 @@ import java.util.List;
 public class Algorithm {
 
 	
-	public static void solve(DataCenter center) {
+	public static void solve(DataCenter center, int numPools) {
 		allocatePositions(center);
-		//allocatePools(center);
+		allocatePools(center, numPools);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -88,6 +88,8 @@ public class Algorithm {
 				if (poolCapacity[i] < poolCapacity[worstPool])
 					worstPool = i;
 			int worstPoolRow = Output.getSecondGuaranteedCapacity(Output.getRowCapacities(Output.getPoolServers(worstPool, center), center));
+
+			boolean allocated = false;
 			for (int i = 0; i < freeServers.size(); i++) {
 				if (freeServers.get(i).posX != worstPoolRow)
 					continue;
@@ -95,7 +97,22 @@ public class Algorithm {
 				poolCapacity[worstPool] = Output.guaranteedCapacity(worstPool, center);
 				freeServers.remove(i);
 				i--;
+				allocated = true;
+				break;
+			}
+			if (!allocated) {
+				freeServers.get(0).pool = worstPool;
+				poolCapacity[worstPool] = Output.guaranteedCapacity(worstPool, center);
+				freeServers.remove(0);
 			}
 		}
+	}
+
+	public static List<Server> serversByRow(List<Server> servers, int row) {
+		List<Server> res = new ArrayList<Server>();
+		for (Server server : servers)
+			if (server.posX == row)
+				res.add(server);
+		return res;
 	}
 }

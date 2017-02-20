@@ -61,9 +61,9 @@ public class Output {
 		return capacities.get(capacities.size()-2);
 	}
 	
-	public static int getSecondToLast(Vector<Integer> capacities){
+	public static int getMinimum(Vector<Integer> capacities){
 		Collections.sort(capacities);
-		return capacities.get(1);
+		return capacities.get(0);
 	}
 	
 	public int evaluator(DataCenter dataCenter, int numPools){
@@ -72,7 +72,7 @@ public class Output {
 		for(int i=0;i<numPools;++i){
 			capacities.add(guaranteedCapacity(i,dataCenter));
 		}
-		ret=getSecondToLast(capacities);
+		ret=getMinimum(capacities);
 		return ret;
 	}
 }
