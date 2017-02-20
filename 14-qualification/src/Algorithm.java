@@ -21,6 +21,7 @@ public class Algorithm {
 		int rows = center.grid.length;
 		int slots = center.grid[0].length;
 
+		int sum = 0;
 		for(int y = 0; y < rows; ++y) {
 			for(int x = 0; x < slots; ++x) {
 				if(center.grid[y][x] == 0) {
@@ -29,22 +30,12 @@ public class Algorithm {
 						fit.posX = x;
 						fit.posY = y;
 						x += fit.size - 1;
+						sum += fit.size;
 					}
-				}/* else {
-					boolean found = false;
-					for(int xi = x; xi < slots; ++xi) {
-						if(center.grid[y][x] == 0) {
-							x = xi - 1;
-							found = true;
-							break;
-						}
-					}
-					if(!found) {
-						x = slots;
-					}
-				}*/
+				}
 			}
 		}
+		System.out.println("sum: " + sum);
 	}
 	
 	public static Server findFit(DataCenter center, List<Server> servers, int xStart, int yStart) {
@@ -58,6 +49,8 @@ public class Algorithm {
 		for(int x = xStart + 1; x < slots; ++x) {
 			if(center.grid[yStart][x] == 0) {
 				++maxSize;
+			} else {
+				break;
 			}
 		}
 
