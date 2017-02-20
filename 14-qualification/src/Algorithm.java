@@ -73,6 +73,7 @@ public class Algorithm {
 				i--;
 			}
 		}
+
 		int poolCapacity[] = new int[numPools];
 		while (!freeServers.isEmpty()) {
 			for (int i = 0; i < numPools; i++)
@@ -86,12 +87,22 @@ public class Algorithm {
 			int worstPoolRow = rowCapacities.indexOf(secondMax);
 
 			boolean allocated = false;
-			for (int i = 0; i < freeServers.size(); i++) {
+			/*for (int i = 0; i < freeServers.size(); i++) {
 				if (freeServers.get(i).posX != worstPoolRow)
 					continue;
 				freeServers.get(i).pool = worstPool;
 				poolCapacity[worstPool] = Output.guaranteedCapacity(worstPool, center);
 				freeServers.remove(i);
+				i--;
+				allocated = true;
+				break;
+			}*/
+			List<Server> rowServers = serversByRow(freeServers, worstPool);
+			rowServers.addAll(serversByRow(freeServers, (worstPool + 1) % numPools));
+			for (int i = 0; i < rowServers.size(); i++) {
+				rowServers.get(i).pool = worstPool;
+				poolCapacity[worstPool] = Output.guaranteedCapacity(worstPool, center);
+				freeServers.remove(rowServers.get(i));
 				i--;
 				allocated = true;
 				break;
