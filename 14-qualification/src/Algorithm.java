@@ -68,7 +68,7 @@ public class Algorithm {
 	public static void allocatePools(DataCenter center, int numPools) {
 		List<Server> freeServers = (List<Server>)center.servers.clone();
 		for (int i = 0; i < freeServers.size(); i++) {
-			if (freeServers.get(i).posX == -1) {
+			if (freeServers.get(i).posX < 0) { // Server not allocated in the grid
 				freeServers.remove(i);
 				i--;
 			}
