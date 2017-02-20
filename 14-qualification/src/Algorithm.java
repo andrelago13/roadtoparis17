@@ -22,17 +22,17 @@ public class Algorithm {
 
 		for(int y = 0; y < rows; ++y) {
 			for(int x = 0; x < slots; ++x) {
-				if(center.grid[y][x] != 0) {
+				if(center.grid[y][x] == 0) {
 					Server fit = findFit(center, sortedServers, x, y);
 					if(fit != null) {
 						fit.posX = x;
 						fit.posY = y;
 						x += fit.size - 1;
 					}
-				} else {
+				}/* else {
 					boolean found = false;
 					for(int xi = x; xi < slots; ++xi) {
-						if(center.grid[y][x] != 0) {
+						if(center.grid[y][x] == 0) {
 							x = xi - 1;
 							found = true;
 							break;
@@ -41,7 +41,7 @@ public class Algorithm {
 					if(!found) {
 						x = slots;
 					}
-				}
+				}*/
 			}
 		}
 	}
@@ -63,6 +63,7 @@ public class Algorithm {
 		for(int i = 0; i < servers.size(); ++i) {
 			Server s = servers.get(i);
 			if(s.size <= maxSize) {
+				servers.remove(s);
 				return s;
 			}
 		}
