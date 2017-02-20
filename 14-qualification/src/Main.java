@@ -18,17 +18,27 @@ public class Main {
 		//test();
 		readFile("res/dc.in");
 		Algorithm.solve(data, pools);
-		int[] p = new int[pools];
+		int[] p = new int[pools + 1];
+		int slots = 0;
 		for(Server serv : data.servers) {
-			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
-			if(serv.pool != -1) {
-				p[serv.pool] += 1;
+			if(serv.posX >= 0) {
+				slots += serv.size;
 			}
+			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
+			/*if(serv.pool != -1) {
+				p[serv.pool] += 1;
+			}*/
+			p[serv.pool + 1] += 1;
 		}
 		for(int i = 0; i < p.length; ++i) {
-			System.out.println(i + "  -  " + p[i] + "  -  " + Output.guaranteedCapacity(i, data));
+			if(i == 0) {
+				System.out.println(i + "  -  " + p[i]);
+			} else {
+				System.out.println(i + "  -  " + p[i] + "  -  " + Output.guaranteedCapacity(i-1, data));	
+			}
 		}
 		System.out.println("SCORE: " + new Output().evaluator(data, pools));
+		System.out.println("SLOTS: " + slots + "/" + (rows*slotsPerRow - unvSlots));
 	}
 	
 	public static void test() {
