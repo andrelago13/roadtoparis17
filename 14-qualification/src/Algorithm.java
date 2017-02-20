@@ -7,7 +7,7 @@ public class Algorithm {
 	
 	public static void solve(DataCenter center) {
 		allocatePositions(center);
-		allocatePools(center);
+		//allocatePools(center);
 	}
 	
 	@SuppressWarnings("unchecked")
