@@ -19,15 +19,14 @@ public class Main {
 		int[] p = new int[pools + 1];
 		int slots = 0;
 		int nServers = 0;
+		int totalSlots = 0;
 		for(Server serv : data.servers) {
-			if(serv.posX >= 0) {
+			if(serv.posX >= 0 && serv.pool >= 0) {
 				slots += serv.size;
 				nServers++;
 			}
-			System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
-			/*if(serv.pool != -1) {
-				p[serv.pool] += 1;
-			}*/
+			totalSlots += serv.size;
+			//System.out.println(serv.id + "(" + serv.size + "," + serv.capacity + "): [" + serv.posX + ", " + serv.posY + "] P" + serv.pool);
 			p[serv.pool + 1] += 1;
 		}
 		for(int i = 0; i < p.length; ++i) {
@@ -38,8 +37,8 @@ public class Main {
 			}
 		}
 		System.out.println("SCORE: " + new Output().evaluator(data, pools));
-		System.out.println("SLOTS: " + slots + "/" + (rows*slotsPerRow - unvSlots));
 		System.out.println("SERVERS: " + nServers + "/" + data.servers.size());
+		System.out.println("SLOTS: " + slots + "/" + (rows*slotsPerRow - unvSlots) + "/" + totalSlots);
 	}
 	
 	public static void test() {
