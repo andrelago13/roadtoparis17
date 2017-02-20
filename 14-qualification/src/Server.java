@@ -1,4 +1,4 @@
-public class Server {
+public class Server{
 	
 	public int id;
 	public int capacity;
@@ -6,4 +6,6 @@ public class Server {
 	public int posY;
 	public int size;
 	public int pool;
+		
 }
+
