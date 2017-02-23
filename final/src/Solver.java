@@ -11,7 +11,9 @@ public class Solver {
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
         for (Cache cache : caches) {
             cache.favourites = cache.getConnectedVideos();
+            System.out.println(cache.favourites.size() + " " + caches.size());
             cache.favourites.sort(cache.localRequestComparator);
+            System.out.println(cache.favourites.size() + " done");
 
             HashSet<Video> assigned = new HashSet<>();
         	int accumulatedSize = 0;
