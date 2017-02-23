@@ -9,5 +9,6 @@ public class Solver {
         for (Connection conn : connections) {
             // TODO
         }
+        return null;
     }
 }
