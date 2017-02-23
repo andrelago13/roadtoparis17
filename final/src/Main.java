@@ -91,17 +91,24 @@ public class Main {
 			request.video = videos.get(Integer.parseInt(detailsRequests[0]));
 			request.endpoint = endpoints.get(Integer.parseInt(detailsRequests[1]));
 			request.hits = Integer.parseInt(detailsRequests[2]);
-			
-			endpoints.get(Integer.parseInt(detailsRequests[1])).requests.add(request);
+
+			int endpointId2 = Integer.parseInt(detailsRequests[1]);
+			endpoints.get(endpointId2).requests.add(request);
+
+			if (endpoints.get(endpointId2).videoRequests.get(request.video.id) == null) {
+				endpoints.get(endpointId2).videoRequests.put(request.video.id, 0);
+			} else {
+				endpoints.get(endpointId2).videoRequests.put(request.video.id, endpoints.get(endpointId2).videoRequests.put(request.video.id, 0));
+			}
 		}
 	}
 		
 
 	public static void main(String[] args) throws IOException {
-		//solveFile("res/kittens");
-		//solveFile("res/me_at_the_zoo");
+		solveFile("res/kittens");
+		solveFile("res/me_at_the_zoo");
 		solveFile("res/trending_today");
-		//solveFile("res/videos_worth_spreading");
+		solveFile("res/videos_worth_spreading");
 	}
 
 	public static void solveFile(String filename) throws IOException {
