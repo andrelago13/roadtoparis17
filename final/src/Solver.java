@@ -12,7 +12,7 @@ public class Solver {
         Set<Video> videos = new HashSet<Video>();
         List<Request> requests = getCacheConnectedRequests(cache, connections);
         for (Request request : requests) {
-            //videos.add(request.video);
+            videos.add(request.video);
         }
         return new ArrayList<Video>(videos);
     }
@@ -20,10 +20,7 @@ public class Solver {
     public static List<Request> getCacheConnectedRequests(Cache cache, List<Connection> connections) {
         List<Request> requests = new ArrayList<Request>();
         for (Connection conn : connections) {
-            List<Endpoint> endpoints = null; // conn.endpoints;
-            for (Endpoint endpoint : endpoints) {
-                requests.addAll(endpoint.requests);
-            }
+            requests.addAll(conn.endpoint.requests);
         }
         return requests;
     }
