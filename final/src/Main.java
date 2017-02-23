@@ -21,7 +21,7 @@ public class Main {
 	static ArrayList<Cache> caches;
 	
 	public static void readFile(String filename) throws IOException{
-		
+		caches = new ArrayList<Cache>();
 		videos = new ArrayList<Video>();
 		endpoints = new ArrayList<Endpoint>();
 		
@@ -55,6 +55,7 @@ public class Main {
 			Endpoint endpoint = new Endpoint();
 			endpoint.id = endpointId;
 			endpoint.latency = Integer.parseInt(detailsEndpoint[0]);
+			endpoint.connections = new ArrayList<Connection>();
 			endpointId++;
 			
 			for(int k = 0; k < Integer.parseInt(detailsEndpoint[1]); ++k){
