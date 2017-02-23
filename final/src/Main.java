@@ -94,7 +94,7 @@ public class Main {
 
 			HashMap<Integer, Integer> videoRequests = endpoints.get(endpointId2).videoRequests;
 			if (videoRequests.get(request.video.id) == null) {
-				videoRequests.put(request.video.id, 0);
+				videoRequests.put(request.video.id, request.hits);
 			} else {
 				videoRequests.put(request.video.id, videoRequests.get(request.video.id) + request.hits);
 			}

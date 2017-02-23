@@ -47,7 +47,7 @@ public class Cache {
 	};
 
 	private double scoreCalculator(double dbLatency, double cacheLatency, double videoSize, double cacheSize) {
-		return (dbLatency/cacheLatency) * (cacheSize/videoSize);
+		return (dbLatency/cacheLatency) * (cacheSize/(double)videoSize);
 	}
 
 	public double localVideoLatencyTimesRequests(Video video) {
