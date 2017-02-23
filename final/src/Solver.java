@@ -10,7 +10,7 @@ public class Solver {
 
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
         for (Cache cache : caches) {
-            cache.favourites = getCacheConnectedVideos(cache);
+            cache.favourites = cache.getConnectedVideos();
             cache.favourites.sort(cache.localRequestComparator);
         }
 
@@ -19,22 +19,5 @@ public class Solver {
 
 
         return 0;
-    }
-
-    public static List<Video> getCacheConnectedVideos(Cache cache) {
-        Set<Video> videos = new HashSet<Video>();
-        List<Request> requests = getCacheConnectedRequests(cache);
-        for (Request request : requests) {
-            videos.add(request.video);
-        }
-        return new ArrayList<Video>(videos);
-    }
-
-    public static List<Request> getCacheConnectedRequests(Cache cache) {
-        List<Request> requests = new ArrayList<Request>();
-        for (Connection conn : cache.connections) {
-            requests.addAll(conn.endpoint.requests);
-        }
-        return requests;
     }
 }
