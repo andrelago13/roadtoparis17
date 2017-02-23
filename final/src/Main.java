@@ -83,7 +83,7 @@ public class Main {
 
 	public static void solveFile(String filename) throws IOException {
 		System.out.println("Solving " + filename);
-		readFile("res/" + filename + ".in");
+		readFile(filename);
 		Solver.solve(videos, endpoints, caches);
 		Output.write(caches, filename);
 		System.out.println("Solved " + filename);
