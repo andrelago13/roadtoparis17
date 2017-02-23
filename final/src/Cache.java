@@ -3,8 +3,8 @@ import java.util.*;
 public class Cache {
 	public int id;
 	public int size;
-	public List<Video> favourites;
-	public Set<Video> assigned;
+	public List<Video> favourites = new ArrayList<Video>();
+	public Set<Video> assigned = new HashSet<Video>();
 	public List<Connection> connections = new ArrayList<Connection>();
 
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
