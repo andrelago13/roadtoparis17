@@ -34,7 +34,6 @@ public class Output {
 		
 		String ret = "";
 		ret+=cache.id;
-		System.out.println("Size:" + cache.assigned.size());
 		for(Video v : cache.assigned){
 			ret+=" " + v.id;
 		}
