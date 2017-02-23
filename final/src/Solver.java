@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -6,8 +7,12 @@ import java.util.List;
 public class Solver {
 
     public static List<Request> getCacheConnectedRequests(Cache cache, List<Connection> connections) {
+        List<Request> requests = new ArrayList<Request>();
         for (Connection conn : connections) {
-            // TODO
+            List<Endpoint> endpoints = null; // conn.endpoints;
+            for (Endpoint endpoint : endpoints) {
+                requests.addAll(endpoint.requests);
+            }
         }
         return null;
     }
