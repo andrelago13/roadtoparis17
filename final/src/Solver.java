@@ -9,11 +9,13 @@ import java.util.Set;
 public class Solver {
 
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
+    	int index = 0;
+    	int size = caches.size();
         for (Cache cache : caches) {
             cache.favourites = cache.getConnectedVideos();
-            System.out.println(cache.favourites.size() + " " + caches.size());
+            System.out.println(cache.favourites.size() + " " + size + "  ==  " + index + "/" + size);
             cache.favourites.sort(cache.localRequestComparator);
-            System.out.println(cache.favourites.size() + " done");
+            System.out.println(cache.favourites.size() + " done" + "  ==  " + index + "/" + size);
 
             HashSet<Video> assigned = new HashSet<>();
         	int accumulatedSize = 0;
@@ -25,6 +27,7 @@ public class Solver {
         		assigned.add(v);
         	}
         	cache.assigned = assigned;
+        	++index;
         }
         
         return 0;
