@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Cache {
 	public int id;
@@ -52,4 +49,21 @@ public class Cache {
 		}
 		return sumLatencyTimesRequests;
 	}
+
+    public List<Video> getConnectedVideos() {
+        Set<Video> videos = new HashSet<Video>();
+        List<Request> requests = getConnectedRequests();
+        for (Request request : requests) {
+            videos.add(request.video);
+        }
+        return new ArrayList<Video>(videos);
+    }
+
+    public List<Request> getConnectedRequests() {
+        List<Request> requests = new ArrayList<Request>();
+        for (Connection conn : this.connections) {
+            requests.addAll(conn.endpoint.requests);
+        }
+        return requests;
+    }
 }
