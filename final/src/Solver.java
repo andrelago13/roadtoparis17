@@ -12,7 +12,9 @@ public class Solver {
         for (Cache cache : caches) {
 			System.out.println(cache.id);
             cache.favourites = cache.getConnectedVideos();
+            System.out.println(cache.favourites.size() + " " + caches.size());
             cache.favourites.sort(cache.localRequestComparator);
+            System.out.println(cache.favourites.size() + " done");
 
             HashSet<Video> assigned = new HashSet<>();
         	int accumulatedSize = 0;
