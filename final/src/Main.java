@@ -57,6 +57,7 @@ public class Main {
 			endpoint.id = endpointId;
 			endpoint.latency = Integer.parseInt(detailsEndpoint[0]);
 			endpoint.connections = new ArrayList<Connection>();
+			endpoint.requests = new ArrayList<Request>();
 			endpointId++;
 			
 			for(int k = 0; k < Integer.parseInt(detailsEndpoint[1]); ++k){
