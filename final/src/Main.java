@@ -34,15 +34,47 @@ public class Main {
 		String[] detailsVid = infoVideos.split(" ");
 		int videoId = 0;
 		
-		for (int i = 0; i < detailsVid.length; i++){
+		for (int i = 0; i < detailsVid.length; ++i){
 			Video video = new Video();
 			video.id = videoId;
 			video.size = Integer.parseInt(detailsVid[videoId]);
 			videoId++;
 		}
+		int endpointId = 0;
 		
-		
+		for(int j = 0; j < numEndpoints; ++j) {
+			
+			String infoEndpoint = reader.readLine();
+			String[] detailsEndpoint = infoEndpoint.split(" ");
+			
+			Endpoint endpoint = new Endpoint();
+			endpoint.id = endpointId;
+			endpoint.latency = Integer.parseInt(detailsEndpoint[0]);
+			endpointId++;
+			
+			for(int k = 0; k < Integer.parseInt(detailsEndpoint[1]); ++k){
+				
+				String infoEndpointCache = reader.readLine();
+				String[] detailsEndpointCache = infoEndpointCache.split(" ");
+				
+				Connection connection = new Connection();
+				connection.latency = Integer.parseInt(detailsEndpointCache[1]);
+				connection.endpoint = endpoint;
+				
+				int cacheId = 0;
+				Cache cache = new Cache();
+				cache.id = cacheId;
+				cache.size = cacheCapac;
+				cacheId++;
+				
+				connection.cache = cache;
+				endpoint.connections.add(connection);
+			}
+			
+			
+		}
 	}
+		
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
