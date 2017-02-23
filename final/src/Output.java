@@ -36,7 +36,7 @@ public class Output {
 		while(cache.assigned.iterator().hasNext()){
 			ret+=" " + cache.assigned.iterator().next();
 		}
-	
+		ret+="\n";
 		write.print(ret);
 	}
 }
