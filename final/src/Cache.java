@@ -8,7 +8,7 @@ public class Cache {
 	public int size;
 	public List<Video> favourites;
 	public Set<Video> assigned;
-	public static ArrayList<Connection> connections;
+	public static List<Connection> connections;
 	
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
 		@Override
