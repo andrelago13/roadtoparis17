@@ -10,9 +10,10 @@ public class Solver {
 
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
         for (Cache cache : caches) {
-            cache.favourites = cache.getConnectedVideos();
+			System.out.println(cache.id);
+            /*cache.favourites = cache.getConnectedVideos();
             cache.favourites.sort(cache.localRequestComparator);
-            
+
             HashSet<Video> assigned = new HashSet<>();
         	int accumulatedSize = 0;
         	for(Video v : cache.favourites) {
@@ -22,7 +23,7 @@ public class Solver {
         		accumulatedSize += v.size;
         		assigned.add(v);
         	}
-        	cache.assigned = assigned;
+        	cache.assigned = assigned;*/
         }
         
         return 0;

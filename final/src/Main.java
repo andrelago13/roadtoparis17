@@ -34,6 +34,12 @@ public class Main {
 		requestDescrip = Integer.parseInt(details[2]);
 		numCaches = Integer.parseInt(details[3]);
 		cacheCapac = Integer.parseInt(details[4]);
+
+		for (int i = 0; i < numCaches; ++i) {
+			Cache cache = new Cache();
+			cache.size = cacheCapac;
+			caches.add(cache);
+		}
 		
 		String infoVideos = reader.readLine();
 		String[] detailsVid = infoVideos.split(" ");
@@ -47,7 +53,7 @@ public class Main {
 			videoId++;
 		}
 		int endpointId = 0;
-		
+
 		for(int j = 0; j < numEndpoints; ++j) {
 			
 			String infoEndpoint = reader.readLine();
@@ -59,25 +65,19 @@ public class Main {
 			endpoint.connections = new ArrayList<Connection>();
 			endpoint.requests = new ArrayList<Request>();
 			endpointId++;
-			
+
 			for(int k = 0; k < Integer.parseInt(detailsEndpoint[1]); ++k){
 				
 				String infoEndpointCache = reader.readLine();
 				String[] detailsEndpointCache = infoEndpointCache.split(" ");
 				
 				Connection connection = new Connection();
+				connection.cache = caches.get(Integer.parseInt(detailsEndpointCache[0]));
 				connection.latency = Integer.parseInt(detailsEndpointCache[1]);
 				connection.endpoint = endpoint;
-				
-				int cacheId = 0;
-				Cache cache = new Cache();
-				cache.id = cacheId;
-				cache.size = cacheCapac;
-				cacheId++;
 
-				caches.add(cache);
-				connection.cache = cache;
 				endpoint.connections.add(connection);
+				connection.cache.connections.add(connection);
 			}
 			endpoints.add(endpoint);
 		}
