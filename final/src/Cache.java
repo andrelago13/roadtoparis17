@@ -35,9 +35,9 @@ public class Cache {
 				cache.put(v2, v2_score);
 			}
 			
-			if(v1_score > v2_score) {
+			if(v1_score < v2_score) {
 				return -1;
-			} else if (v1_score < v2_score) {
+			} else if (v1_score > v2_score) {
 				return 1;
 			}
 			
