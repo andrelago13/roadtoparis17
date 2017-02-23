@@ -10,7 +10,6 @@ public class Solver {
 
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
         for (Cache cache : caches) {
-			System.out.println(cache.id);
             cache.favourites = cache.getConnectedVideos();
             cache.favourites.sort(cache.localRequestComparator);
 
