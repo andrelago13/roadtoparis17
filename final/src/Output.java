@@ -36,7 +36,7 @@ public class Output {
 		ret+=cache.id;
 		System.out.println("Size:" + cache.assigned.size());
 		for(Video v : cache.assigned){
-			ret+=" " + v.i;
+			ret+=" " + v.id;
 		}
 		ret+="\n";
 		write.print(ret);
