@@ -77,7 +77,8 @@ public class Main {
 				caches.add(cache);
 				connection.cache = cache;
 				endpoint.connections.add(connection);
-			}	
+			}
+			endpoints.add(endpoint);
 		}
 		
 		for (int l = 0; l < requestDescrip; ++l){
