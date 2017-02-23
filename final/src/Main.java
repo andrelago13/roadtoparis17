@@ -97,7 +97,7 @@ public class Main {
 		
 
 	public static void main(String[] args) throws IOException {
-		solveFile("res/kittens.in");
+		solveFile("res/kittens");
 		solveFile("res/me_at_the_zoo.in");
 		solveFile("res/trending_today.in");
 		solveFile("videos_worth_spreading.in");
@@ -105,9 +105,9 @@ public class Main {
 
 	public static void solveFile(String filename) throws IOException {
 		System.out.println("Solving " + filename);
-		readFile(filename);
+		readFile(filename + ".in");
 		Solver.solve(videos, endpoints, caches);
-		Output.write(caches, filename);
+		Output.write(caches, filename + ".out");
 		System.out.println("Solved " + filename);
 	}
 }
