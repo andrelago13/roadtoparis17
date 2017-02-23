@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Gustavo on 23/02/2017.
@@ -14,6 +16,15 @@ public class Solver {
                 requests.addAll(endpoint.requests);
             }
         }
-        return null;
+        return requests;
+    }
+
+    public static List<Video> getCacheConnectedVideos(Cache cache, List<Connection> connections) {
+        Set<Video> videos = new HashSet<Video>();
+        List<Request> requests = getCacheConnectedRequests(cache, connections);
+        for (Request request : requests) {
+            //videos.add(request.video);
+        }
+        return new ArrayList<Video>(videos);
     }
 }
