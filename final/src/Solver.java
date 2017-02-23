@@ -8,6 +8,15 @@ import java.util.Set;
  */
 public class Solver {
 
+    public static List<Video> getCacheConnectedVideos(Cache cache, List<Connection> connections) {
+        Set<Video> videos = new HashSet<Video>();
+        List<Request> requests = getCacheConnectedRequests(cache, connections);
+        for (Request request : requests) {
+            //videos.add(request.video);
+        }
+        return new ArrayList<Video>(videos);
+    }
+
     public static List<Request> getCacheConnectedRequests(Cache cache, List<Connection> connections) {
         List<Request> requests = new ArrayList<Request>();
         for (Connection conn : connections) {
@@ -17,14 +26,5 @@ public class Solver {
             }
         }
         return requests;
-    }
-
-    public static List<Video> getCacheConnectedVideos(Cache cache, List<Connection> connections) {
-        Set<Video> videos = new HashSet<Video>();
-        List<Request> requests = getCacheConnectedRequests(cache, connections);
-        for (Request request : requests) {
-            //videos.add(request.video);
-        }
-        return new ArrayList<Video>(videos);
     }
 }
