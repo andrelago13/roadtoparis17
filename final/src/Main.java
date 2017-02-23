@@ -43,6 +43,7 @@ public class Main {
 			Video video = new Video();
 			video.id = videoId;
 			video.size = Integer.parseInt(detailsVid[videoId]);
+			videos.add(video);
 			videoId++;
 		}
 		int endpointId = 0;
