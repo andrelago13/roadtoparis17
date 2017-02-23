@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -7,9 +8,9 @@ public class Cache {
 	public int size;
 	public List<Video> favourites;
 	public Set<Video> assigned;
+	public static ArrayList<Connection> connections;
 	
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
-
 		@Override
 		public int compare(Video v1, Video v2) {
 			
@@ -31,4 +32,27 @@ public class Cache {
 		}
 		
 	};
+	
+	public static double localVideoLatencyTimesRequests(Video video, int cacheID) {
+		double sumLatencyTimesRequests = 0;
+		for(Connection c : connections) {
+			sumLatencyTimesRequests += c.endpoint.latency*c.endpoint.getVideoRequests(video);
+		}
+		return sumLatencyTimesRequests;
+	}
+	
+	public static double localVideoCacheLatencyTimesRequests(Video video, int cacheID) {
+		double sumLatencyTimesRequests = 0;
+		for(Connection c : connections) {
+			sumLatencyTimesRequests += c.latency*c.endpoint.getVideoRequests(video);
+		}
+		return sumLatencyTimesRequests;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
