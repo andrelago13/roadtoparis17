@@ -53,7 +53,7 @@ public class Cache {
 	public double localVideoLatencyTimesRequests(Video video) {
 		double sumLatencyTimesRequests = 0;
 		for(Connection c : connections) {
-			sumLatencyTimesRequests += c.endpoint.latency*c.endpoint.getVideoRequests(video);
+			sumLatencyTimesRequests += c.endpoint.latency*c.endpoint.getNumVideoRequests(video);
 		}
 		return sumLatencyTimesRequests;
 	}
@@ -61,7 +61,7 @@ public class Cache {
 	public double localVideoCacheLatencyTimesRequests(Video video) {
 		double sumLatencyTimesRequests = 0;
 		for(Connection c : connections) {
-			sumLatencyTimesRequests += c.latency*c.endpoint.getVideoRequests(video);
+			sumLatencyTimesRequests += c.latency*c.endpoint.getNumVideoRequests(video);
 		}
 		return sumLatencyTimesRequests;
 	}

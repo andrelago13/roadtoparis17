@@ -8,7 +8,7 @@ public class Endpoint {
 	public List<Request> requests;
 	public HashMap<Integer, Integer> videoRequests = new HashMap<Integer, Integer>();
 	
-	public int getVideoRequests(Video v) {
+	public int getNumVideoRequests(Video v) {
 		/*for(Request r : requests) {
 			if(r.video == v) {
 				return r.hits;
