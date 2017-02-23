@@ -13,7 +13,7 @@ public class Main {
 	static int cacheCapac;
 	static ArrayList<Video> videos;
 	static ArrayList<Endpoint> endpoints;
-	
+	static ArrayList<Cache> caches;
 	
 	public static void readFile(String filename) throws IOException{
 		
@@ -66,7 +66,8 @@ public class Main {
 				cache.id = cacheId;
 				cache.size = cacheCapac;
 				cacheId++;
-				
+
+				caches.add(cache);
 				connection.cache = cache;
 				endpoint.connections.add(connection);
 			}	
@@ -86,9 +87,15 @@ public class Main {
 	}
 		
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws IOException {
+		solveFile("res/kittens.in");
 	}
 
+	public static void solveFile(String filename) throws IOException {
+		System.out.println("Solving " + filename);
+		readFile(filename);
+		Solver.solve(videos, endpoints, caches);
+		Output.write(caches, filename);
+		System.out.println("Solved " + filename);
+	}
 }
