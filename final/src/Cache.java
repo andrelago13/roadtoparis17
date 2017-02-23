@@ -6,17 +6,34 @@ public class Cache {
 	public List<Video> favourites = new ArrayList<Video>();
 	public Set<Video> assigned = new HashSet<Video>();
 	public List<Connection> connections = new ArrayList<Connection>();
+	public HashMap<Video, Double> cache = new HashMap<>();
 
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
 		@Override
 		public int compare(Video v1, Video v2) {
-			/*double v1_OriginalLatency = localVideoLatencyTimesRequests(v1);
-			double v2_OriginalLatency = localVideoLatencyTimesRequests(v2);
-			double v1_NewLatency = localVideoCacheLatencyTimesRequests(v1);
-			double v2_NewLatency = localVideoCacheLatencyTimesRequests(v2);
+		
+			double v1_score = 0;
+			double v2_score = 0;
 			
-			double v1_score = scoreCalculator(v1_OriginalLatency, v1_NewLatency, v1.size, size);
-			double v2_score = scoreCalculator(v2_OriginalLatency, v2_NewLatency, v2.size, size);
+			Double score = cache.get(v1);
+			if(score != null) {
+				v1_score = score.intValue();
+			} else {
+				double v1_OriginalLatency = localVideoLatencyTimesRequests(v1);
+				double v1_NewLatency = localVideoCacheLatencyTimesRequests(v1);
+				v1_score = scoreCalculator(v1_OriginalLatency, v1_NewLatency, v1.size, size);
+				cache.put(v1, v1_score);
+			}
+			
+			score = cache.get(v2);
+			if(score != null) {
+				v2_score = score.intValue();
+			} else {
+				double v2_OriginalLatency = localVideoLatencyTimesRequests(v2);
+				double v2_NewLatency = localVideoCacheLatencyTimesRequests(v2);
+				v2_score = scoreCalculator(v2_OriginalLatency, v2_NewLatency, v2.size, size);
+				cache.put(v2, v2_score);
+			}
 			
 			if(v1_score > v2_score) {
 				return -1;
@@ -24,7 +41,6 @@ public class Cache {
 				return 1;
 			}
 			
-			return 0;*/
 			return 0;
 		}
 		
