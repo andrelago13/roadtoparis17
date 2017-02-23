@@ -36,6 +36,10 @@ public class Main {
 		cacheCapac = Integer.parseInt(details[4]);
 		
 		String infoVideos = reader.readLine();
+		
+		if(infoVideos.isEmpty())
+			infoVideos = reader.readLine();
+		
 		String[] detailsVid = infoVideos.split(" ");
 		int videoId = 0;
 		
