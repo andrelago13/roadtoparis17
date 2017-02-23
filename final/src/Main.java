@@ -69,9 +69,19 @@ public class Main {
 				
 				connection.cache = cache;
 				endpoint.connections.add(connection);
-			}
+			}	
+		}
+		
+		for (int l = 0; l < requestDescrip; ++l){
+			String infoRequests = reader.readLine();
+			String[] detailsRequests = infoRequests.split(" ");
 			
+			Request request = new Request();
+			request.video = videos.get(Integer.parseInt(detailsRequests[0]));
+			request.endpoint = endpoints.get(Integer.parseInt(detailsRequests[1]));
+			request.hits = Integer.parseInt(detailsRequests[2]);
 			
+			endpoints.get(Integer.parseInt(detailsRequests[1])).requests.add(request);
 		}
 	}
 		
