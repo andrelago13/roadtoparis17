@@ -38,6 +38,7 @@ public class Main {
 		for (int i = 0; i < numCaches; ++i) {
 			Cache cache = new Cache();
 			cache.size = cacheCapac;
+			cache.id = i;
 			caches.add(cache);
 		}
 		
