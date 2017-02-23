@@ -11,6 +11,7 @@ public class Solver {
     public static long solve(List<Video> videos, List<Endpoint> endpoints, List<Cache> caches) {
         for (Cache cache : caches) {
             cache.favourites = getCacheConnectedVideos(cache);
+            cache.favourites.sort(cache.localRequestComparator);
         }
 
 
