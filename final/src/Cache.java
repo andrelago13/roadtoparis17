@@ -5,7 +5,7 @@ public class Cache {
 	public int size;
 	public List<Video> favourites;
 	public Set<Video> assigned;
-	public static List<Connection> connections;
+	public List<Connection> connections;
 
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
 		@Override
