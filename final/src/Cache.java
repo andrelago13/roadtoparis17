@@ -18,8 +18,8 @@ public class Cache {
 			double v1_NewLatency = 0;
 			double v2_NewLatency = 0;
 			
-			double v1_score = (v1_OriginalLatency/v1_NewLatency) * (size/v1.size);
-			double v2_score = (v2_OriginalLatency/v2_NewLatency) * (size/v2.size);
+			double v1_score = scoreCalculator(v1_OriginalLatency, v1_NewLatency, v1.size, size);
+			double v2_score = scoreCalculator(v2_OriginalLatency, v2_NewLatency, v2.size, size);
 			
 			if(v1_score < v2_score) {
 				return -1;
@@ -31,4 +31,8 @@ public class Cache {
 		}
 		
 	};
+
+	private double scoreCalculator(double dbLatency, double cacheLatency, double videoSize, double cacheSize) {
+		return (dbLatency/cacheLatency) * (cacheSize/videoSize);
+	}
 }
