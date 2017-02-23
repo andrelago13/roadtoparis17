@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -95,10 +92,11 @@ public class Main {
 			int endpointId2 = Integer.parseInt(detailsRequests[1]);
 			endpoints.get(endpointId2).requests.add(request);
 
-			if (endpoints.get(endpointId2).videoRequests.get(request.video.id) == null) {
-				endpoints.get(endpointId2).videoRequests.put(request.video.id, 0);
+			HashMap<Integer, Integer> videoRequests = endpoints.get(endpointId2).videoRequests;
+			if (videoRequests.get(request.video.id) == null) {
+				videoRequests.put(request.video.id, 0);
 			} else {
-				endpoints.get(endpointId2).videoRequests.put(request.video.id, endpoints.get(endpointId2).videoRequests.get(request.video.id) + 1);
+				videoRequests.put(request.video.id, videoRequests.get(request.video.id) + request.hits);
 			}
 		}
 	}
