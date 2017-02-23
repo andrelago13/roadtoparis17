@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -29,12 +30,13 @@ public class Output {
 		return ret;
 	}
 	
-	public static void writeCache (Cache cache, PrintWriter write){
+	public static void writeCache(Cache cache, PrintWriter write){
 		
 		String ret = "";
 		ret+=cache.id;
-		while(cache.assigned.iterator().hasNext()){
-			ret+=" " + cache.assigned.iterator().next();
+		System.out.println("Size:" + cache.assigned.size());
+		for(Video v : cache.assigned){
+			ret+=" " + v.i;
 		}
 		ret+="\n";
 		write.print(ret);
