@@ -95,6 +95,9 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		solveFile("res/kittens.in");
+		solveFile("res/me_at_the_zoo.in");
+		solveFile("res/trending_today.in");
+		solveFile("videos_worth_spreading.in");
 	}
 
 	public static void solveFile(String filename) throws IOException {
