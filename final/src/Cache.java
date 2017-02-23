@@ -3,14 +3,13 @@ import java.util.*;
 public class Cache {
 	public int id;
 	public int size;
-	public List<Video> favourites;
-	public Set<Video> assigned;
-	public List<Connection> connections;
+	public List<Video> favourites = new ArrayList<Video>();
+	public Set<Video> assigned = new HashSet<Video>();
+	public List<Connection> connections = new ArrayList<Connection>();
 
 	public Comparator<Video> localRequestComparator = new Comparator<Video>() {
 		@Override
 		public int compare(Video v1, Video v2) {
-			
 			double v1_OriginalLatency = localVideoLatencyTimesRequests(v1);
 			double v2_OriginalLatency = localVideoLatencyTimesRequests(v2);
 			double v1_NewLatency = localVideoCacheLatencyTimesRequests(v1);
