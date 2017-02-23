@@ -35,9 +35,9 @@ public class Cache {
 				cache.put(v2, v2_score);
 			}
 			
-			if(v1_score < v2_score) {
+			if(v1_score > v2_score) {
 				return -1;
-			} else if (v1_score > v2_score) {
+			} else if (v1_score < v2_score) {
 				return 1;
 			}
 			
@@ -47,7 +47,7 @@ public class Cache {
 	};
 
 	private double scoreCalculator(double dbLatency, double cacheLatency, double videoSize, double cacheSize) {
-		return (dbLatency/cacheLatency) * (cacheSize/videoSize);
+		return (dbLatency/cacheLatency) * (cacheSize/(double)videoSize);
 	}
 
 	public double localVideoLatencyTimesRequests(Video video) {
